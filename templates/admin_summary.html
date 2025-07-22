@@ -1,0 +1,43 @@
+{% extends 'index.html' %} {% block title %} Summary Page {% endblock %} {%
+block content %}
+<div class="container mt-4">
+  <h4>User Summary</h4>
+  {% for summary in summaries %}
+  <div class="card mt-3">
+    <div class="card-header">
+      <strong>User:</strong> {{ summary.user.email }}
+    </div>
+    <div class="card-body">
+      {% if summary.reservations %}
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <td>Lot Name</td>
+            <td>Spot Id</td>
+            <td>Start time</td>
+            <td>End time</td>
+            <td>Duration</td>
+            <td>Cost</td>
+          </tr>
+        </thead>
+        <tbody>
+          {% for res in summary.reservations %}
+          <tr>
+            <td>{{ res.lot_name }}</td>
+            <td>{{ res.spot_id }}</td>
+            <td>{{ res.start }}</td>
+            <td>{{ res.end if res.end else 'Still Parked' }}</td>
+            <td>{{ res.duration if res.duration is not none else '-' }} hrs</td>
+            <td>{{ res.cost if res.cost is not none else '-' }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <h5>No reservations for this User</h5>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

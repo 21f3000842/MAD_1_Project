@@ -1,0 +1,68 @@
+{% extends 'index.html' %} {% block title %}Register{% endblock %} {% block
+content %}
+<h2 class="mt-4 mb-4">Register</h2>
+
+<form class="needs-validation" action="/register" method="POST" novalidate>
+  <div class="mb-3">
+    <label for="email" class="form-label">Email address</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      name="email"
+      placeholder="Enter E-mail here"
+      required
+    />
+    <div class="invalid-feedback">Please provide a valid email.</div>
+  </div>
+
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      name="password"
+      placeholder="Enter Password here"
+      required
+    />
+    <div class="invalid-feedback">Password is required.</div>
+  </div>
+
+  <div class="mb-3">
+    <label for="confirm_password" class="form-label">Confirm Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="confirm_password"
+      name="confirm_password"
+      placeholder="Confirm Password"
+      required
+    />
+    <div class="invalid-feedback">Please confirm your password.</div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Register</button>
+</form>
+
+<script>
+  // Bootstrap 5 form validation
+  (function () {
+    "use strict";
+    const forms = document.querySelectorAll(".needs-validation");
+    Array.from(forms).forEach(function (form) {
+      form.addEventListener(
+        "submit",
+        function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add("was-validated");
+        },
+        false
+      );
+    });
+  })();
+</script>
+{% endblock %}

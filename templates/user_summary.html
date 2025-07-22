@@ -1,0 +1,29 @@
+{% extends 'index.html' %} {% block title %} My Parking Summary {% endblock %}
+{% block content %}
+
+<h2 class="mt-4">My Parking History</h2>
+<table class="table table-bordered table-striped mt-3">
+  <thead>
+    <tr>
+      <th>Lot Name</th>
+      <th>Spot ID</th>
+      <th>Start Time</th>
+      <th>End Time</th>
+      <th>Duration (hrs)</th>
+      <th>Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for res in reservations %}
+    <tr>
+      <td>{{ res.lot_name }}</td>
+      <td>{{ res.spot_id }}</td>
+      <td>{{ res.start }}</td>
+      <td>{{ res.end if res.end is not none else 'Active' }}</td>
+      <td>{{ res.duration if res.duration is not none else '-' }}</td>
+      <td>{{ res.cost if res.cost is not none else '-' }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

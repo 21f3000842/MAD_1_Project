@@ -1,0 +1,41 @@
+{% extends 'index.html' %} {% block title %}View Parking Spots{% endblock %} {%
+block content %}
+
+<div class="container py-5">
+  <h2 class="text-center mb-4">Parking Spots for Lot: {{ lot.name }}</h2>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped text-center align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">Spot No.</th>
+          <th scope="col">Lot Name</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for spot in lot.parkingspot %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ lot.name }}</td>
+          <td>
+            {% if spot.status == 'O' %}
+            <span class="badge bg-danger">Occupied</span>
+            {% else %}
+            <span class="badge bg-success">Available</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="text-center mt-4">
+    <a href="{{ url_for('home') }}" class="btn btn-secondary"
+      >Back to Dashboard</a
+    >
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,34 @@
+<div class="container-fluid">
+  {% for lot in lots %}
+  <div class="container-fluid">
+    <div class="card m-3" style="width: 18rem">
+      <img src="..." class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">Parking Lot: {{ lot.name }}</h5>
+        <p class="card-text">
+          Available Spots :{{ available_lots[lot.id] }}
+          <br />
+          Price: Rs.{{ parking_cost[lot.id] }}
+        </p>
+
+        {% if active_registration[lot.id] %}
+        <a
+          href="{{ url_for('pay_and_leave',reservation_id = active_registration[lot.id].id) }}"
+          class="btn btn-primary"
+          >Pay and Leave
+        </a>
+        {% else %}
+        <a
+          href="{{ url_for('book_spot',
+          lot_id=lot.id,
+          spots_available = available_lots[lot.id],
+          parking_rate=parking_cost[lot.id]) }}"
+          class="btn btn-primary"
+          >Book</a
+        >
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>

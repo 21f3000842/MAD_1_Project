@@ -1,0 +1,63 @@
+{% extends 'index.html' %} {% block title %}Add Parking Lot{% endblock %} {%
+block content %}
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Add Parking Lot</h2>
+  <form method="POST" action="{{ url_for('add_lot') }}">
+    <div class="mb-3">
+      <label for="name" class="form-label">Lot Name</label>
+      <input type="text" class="form-control" id="name" name="name" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="price" class="form-label">Price per Hour</label>
+      <input
+        type="number"
+        class="form-control"
+        id="price"
+        name="price"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="address" class="form-label">Address</label>
+      <textarea
+        class="form-control"
+        id="address"
+        name="address"
+        rows="3"
+        required
+      ></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="pin_code" class="form-label">Pin Code</label>
+      <input
+        type="text"
+        class="form-control"
+        id="pin_code"
+        name="pin_code"
+        maxlength="6"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="max_num_spots" class="form-label">Max Number of Spots</label>
+      <input
+        type="number"
+        class="form-control"
+        id="max_num_spots"
+        name="max_num_spots"
+        required
+      />
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary">Add Lot</button>
+    </div>
+  </form>
+</div>
+
+{% endblock %}
