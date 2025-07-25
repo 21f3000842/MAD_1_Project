@@ -216,6 +216,7 @@ def delete_lot(lot_id):
     
     db.session.delete(lot)
     db.session.commit()
+    flash('Deleted Successfully','success')
     return redirect(url_for('home'))
 
 @app.route('/lot/<int:lot_id>/view', methods =['GET'])
